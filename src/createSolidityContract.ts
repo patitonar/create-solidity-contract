@@ -33,7 +33,6 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
   shouldUseYarn();
   shouldUseYarnWorkspaces();
   const isOnline = await getOnline();
-  const originalDirectory = process.cwd();
 
   console.log(`Creating a new Ethereum-powered React app in ${chalk.green(root)}.`);
   console.log();
@@ -69,34 +68,5 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
     console.log();
   }
 
-  let cdPath: string;
-  if (path.join(originalDirectory, appName) === appPath) {
-    cdPath = appName;
-  } else {
-    cdPath = appPath;
-  }
-
   console.log(`${chalk.green("Success!")} Created ${appName} at ${appPath}`);
-  console.log("Inside that directory, you can run several commands:");
-  console.log();
-  console.log(chalk.cyan("  yarn react-app:start"));
-  console.log("    Starts the development server.");
-  console.log();
-  console.log(chalk.cyan("  yarn react-app:build"));
-  console.log("    Builds the app for production.");
-  console.log();
-  const subgraphPath = path.join(root, "packages", "subgraph");
-  if (fs.existsSync(subgraphPath)) {
-    console.log(chalk.cyan("  yarn subgraph:codegen"));
-    console.log("    Generates AssemblyScript types for smart contract ABIs and the subgraph schema.");
-    console.log();
-    console.log(chalk.cyan("  yarn subgraph:deploy"));
-    console.log("    Deploys the subgraph to the official Graph Node.");
-    console.log();
-  }
-  console.log("We suggest that you begin by typing:");
-  console.log();
-  console.log(chalk.cyan("  cd"), cdPath);
-  console.log(`  ${chalk.cyan("yarn react-app:start")}`);
-  console.log();
 }
