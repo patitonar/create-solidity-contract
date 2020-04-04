@@ -1,0 +1,11 @@
+{
+  "name": "truffle",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "truffle compile"
+  },
+  "dependencies": {
+    "truffle": "^5.1.20"
+  }
+}
