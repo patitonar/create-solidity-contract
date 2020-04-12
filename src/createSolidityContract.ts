@@ -7,7 +7,6 @@ import { getOnline } from "./helpers/isOnline";
 import { install } from "./helpers/install";
 import { isFolderEmpty } from "./helpers/isFolderEmpty";
 import { shouldUseYarn, shouldUseYarnWorkspaces } from "./helpers/yarn";
-import { tryGitInit } from "./helpers/git";
 
 export async function createSolidityContract({ appPath, template }: { appPath: string; template?: string }) {
   if (template) {
@@ -55,11 +54,6 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
 
   await install(root, null, { isOnline });
   console.log();
-
-  if (tryGitInit(root)) {
-    console.log("Initialized a git repository.");
-    console.log();
-  }
 
   console.log(`${chalk.green("Success!")} Created ${appName} at ${appPath}`);
 }
