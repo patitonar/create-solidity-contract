@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import fs from "fs";
 import makeDir from "make-dir";
 import path from "path";
 
@@ -44,12 +43,6 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
     console.log(`Downloading files for template ${chalk.cyan(template)}. This might take a moment.`);
     console.log();
     await downloadAndExtractTemplate(root, template);
-
-    /* Copy our default `.gitignore` if the application did not provide one */
-    const ignorePath = path.join(root, ".gitignore");
-    if (!fs.existsSync(ignorePath)) {
-      fs.copyFileSync(path.join(__dirname, "gitignore"), ignorePath);
-    }
   } else {
     const defaultTemplate = "truffle";
     console.log("Downloading template files. This might take a moment.");
