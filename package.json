@@ -13,25 +13,17 @@
     "url": "https://github.com/patitonar/create-solidity-contract/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.4",
-    "@types/cross-spawn": "^6.0.1",
     "@types/got": "9.6.2",
     "@types/node": "^13.7.0",
     "@types/prompts": "2.0.1",
-    "@types/rimraf": "^2.0.3",
     "@types/tar": "4.0.3",
     "@zeit/ncc": "^0.21.1",
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
-    "commitizen": "^4.0.3",
-    "cpy": "^8.0.0",
-    "cross-spawn": "^7.0.1",
     "got": "^10.4.0",
     "husky": "^4.0.7",
-    "lerna": "3.20.2",
     "make-dir": "^3.0.0",
     "prettier": "^1.19.1",
-    "prettier-plugin-solidity": "^1.0.0-alpha.36",
     "promisepipe": "^3.0.0",
     "prompts": "^2.3.0",
     "shx": "^0.3.2",
@@ -39,8 +31,7 @@
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "3.7.3",
-    "update-check": "^1.5.3",
-    "validate-npm-package-name": "^3.0.0"
+    "update-check": "^1.5.3"
   },
   "files": [
     "/dist"

@@ -3,7 +3,7 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
   "linterOptions": {
-    "exclude": ["lib", ".commitlintrc.js"]
+    "exclude": ["lib"]
   },
   "rules": {
     "no-console": false,

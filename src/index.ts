@@ -7,7 +7,6 @@ import updateCheck from "update-check";
 
 import packageJson from "../package.json";
 import { createSolidityContract } from "./createSolidityContract";
-import { validateNpmName } from "./helpers/validatePkg";
 
 let projectPath: string = "";
 
@@ -29,9 +28,7 @@ const program: Commander.Command = new Commander.Command(packageJson.name)
   .parse(process.argv);
 
 async function run() {
-  if (typeof projectPath === "string") {
-    projectPath = projectPath.trim();
-  }
+  projectPath = projectPath.trim();
 
   if (!projectPath) {
     const res: prompts.Answers<string> = await prompts({
@@ -39,13 +36,6 @@ async function run() {
       message: "What is your project named?",
       name: "path",
       type: "text",
-      validate: (name: string) => {
-        const validation: { valid: boolean; problems?: string[] } = validateNpmName(path.basename(path.resolve(name)));
-        if (validation.valid) {
-          return true;
-        }
-        return "Invalid project name: " + validation.problems![0];
-      },
     });
 
     if (typeof res.path === "string") {
@@ -66,17 +56,6 @@ async function run() {
   }
 
   const resolvedProjectPath = path.resolve(projectPath);
-  const projectName = path.basename(resolvedProjectPath);
-
-  const { problems, valid } = validateNpmName(projectName);
-  if (!valid) {
-    console.error(
-      `Could not create a project called ${chalk.red(`"${projectName}"`)} because of npm naming restrictions:`,
-    );
-
-    problems!.forEach((problem: string) => console.error(`    ${chalk.red.bold("*")} ${problem}`));
-    process.exit(1);
-  }
 
   await createSolidityContract({
     appPath: resolvedProjectPath,

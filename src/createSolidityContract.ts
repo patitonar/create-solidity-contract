@@ -3,10 +3,7 @@ import makeDir from "make-dir";
 import path from "path";
 
 import { downloadAndExtractTemplate, hasTemplate } from "./helpers/templates";
-import { getOnline } from "./helpers/isOnline";
-import { install } from "./helpers/install";
 import { isFolderEmpty } from "./helpers/isFolderEmpty";
-import { shouldUseYarn, shouldUseYarnWorkspaces } from "./helpers/yarn";
 
 export async function createSolidityContract({ appPath, template }: { appPath: string; template?: string }) {
   if (template) {
@@ -28,10 +25,6 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
     process.exit(1);
   }
 
-  shouldUseYarn();
-  shouldUseYarnWorkspaces();
-  const isOnline = await getOnline();
-
   console.log(`Creating a new solidity project in ${chalk.green(root)}.`);
   console.log();
 
@@ -48,12 +41,6 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
     console.log();
     await downloadAndExtractTemplate(root, defaultTemplate);
   }
-
-  console.log("Installing packages. This might take a couple of minutes.");
-  console.log();
-
-  await install(root, null, { isOnline });
-  console.log();
 
   console.log(`${chalk.green("Success!")} Created ${appName} at ${appPath}`);
 }
