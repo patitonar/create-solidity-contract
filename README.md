@@ -35,7 +35,7 @@ Create Solidity Contract comes with templates with different tools. Peek into th
 As an example:
 
 ```sh
-yarn create solidity-contract my-contract --with-template truffle
+yarn create solidity-contract my-contract --template truffle
 ```
 
 ```sh
