@@ -33,7 +33,7 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
   shouldUseYarnWorkspaces();
   const isOnline = await getOnline();
 
-  console.log(`Creating a new Ethereum-powered React app in ${chalk.green(root)}.`);
+  console.log(`Creating a new solidity project in ${chalk.green(root)}.`);
   console.log();
 
   await makeDir(root);
