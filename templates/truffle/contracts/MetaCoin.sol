@@ -1,17 +1,17 @@
 pragma solidity >=0.4.25 <0.7.0;
 
+
 // This is just a simple example of a coin-like contract.
 // It is not standards compatible and cannot be expected to talk to other
 // coin/token contracts. If you want to create a standards-compliant
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
-
 contract MetaCoin {
-    mapping(address => uint256) balances;
+    mapping(address => uint256) internal balances;
 
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
     constructor() public {
-        balances[tx.origin] = 10000;
+        balances[msg.sender] = 10000;
     }
 
     function sendCoin(address receiver, uint256 amount) public returns (bool sufficient) {
