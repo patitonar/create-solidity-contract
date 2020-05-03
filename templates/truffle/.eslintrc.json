@@ -10,5 +10,6 @@
   "plugins": ["mocha", "truffle", "prettier"],
   "rules": {
     "mocha/no-mocha-arrows": "off"
-  }
+  },
+  "ignorePatterns": ["coverage/"]
 }

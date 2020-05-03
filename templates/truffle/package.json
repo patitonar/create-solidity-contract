@@ -5,6 +5,7 @@
   "scripts": {
     "compile": "truffle compile",
     "test": "buidler test",
+    "coverage": "buidler coverage",
     "deploy": "truffle migrate",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
@@ -29,6 +30,7 @@
     "prettier-plugin-solidity": "^1.0.0-alpha.49",
     "solhint": "3.0.0-rc.8",
     "solhint-plugin-prettier": "^0.0.4",
+    "solidity-coverage": "^0.7.5",
     "web3": "^1.2.7"
   }
 }
