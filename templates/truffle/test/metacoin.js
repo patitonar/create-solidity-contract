@@ -2,13 +2,13 @@ const MetaCoin = artifacts.require("MetaCoin");
 
 contract("MetaCoin", accounts => {
   it("should put 10000 MetaCoin in the first account", async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
+    const metaCoinInstance = await MetaCoin.new();
     const balance = await metaCoinInstance.getBalance.call(accounts[0]);
 
     assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
   });
   it("should call a function that depends on a linked library", async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
+    const metaCoinInstance = await MetaCoin.new();
     const metaCoinBalance = (await metaCoinInstance.getBalance.call(accounts[0])).toNumber();
     const metaCoinEthBalance = (await metaCoinInstance.getBalanceInEth.call(accounts[0])).toNumber();
 
@@ -19,7 +19,7 @@ contract("MetaCoin", accounts => {
     );
   });
   it("should send coin correctly", async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
+    const metaCoinInstance = await MetaCoin.new();
 
     // Setup 2 accounts.
     const accountOne = accounts[0];
