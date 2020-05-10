@@ -13,6 +13,7 @@
     "lint:sol:fix": "prettier --write \"contracts/**/*.sol\""
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^3.0.1",
     "truffle": "^5.1.20"
   },
   "devDependencies": {

@@ -11,5 +11,5 @@
   "rules": {
     "mocha/no-mocha-arrows": "off"
   },
-  "ignorePatterns": ["coverage/"]
+  "ignorePatterns": ["coverage/", "cache/"]
 }
