@@ -12,22 +12,18 @@ contract MetaCoin {
 
     mapping(address => uint256) internal balances;
 
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
     constructor() public {
-        balances[msg.sender] = 10000;
+        balances[msg.sender] = 1 ether;
     }
 
     function sendCoin(address receiver, uint256 amount) public returns (bool sufficient) {
-        if (balances[msg.sender] < amount) return false;
+        require(balances[msg.sender] >= amount, "balance insufficient");
         balances[msg.sender] = balances[msg.sender].sub(amount);
         balances[receiver] = balances[receiver].add(amount);
         emit Transfer(msg.sender, receiver, amount);
         return true;
-    }
-
-    function getBalanceInEth(address addr) public view returns (uint256) {
-        return getBalance(addr).mul(2);
     }
 
     function getBalance(address addr) public view returns (uint256) {

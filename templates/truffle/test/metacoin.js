@@ -1,22 +1,16 @@
+const { expectEvent, expectRevert, BN, ether } = require('@openzeppelin/test-helpers')
+const { expect } = require('chai')
+
 const MetaCoin = artifacts.require('MetaCoin')
 
+const toBN = (n) => new BN(n)
+
 contract('MetaCoin', (accounts) => {
-  it('should put 10000 MetaCoin in the first account', async () => {
+  it('should put 1 ether of MetaCoin in the first account', async () => {
     const metaCoinInstance = await MetaCoin.new()
-    const balance = await metaCoinInstance.getBalance.call(accounts[0])
+    const balance = toBN(await metaCoinInstance.getBalance(accounts[0]))
 
-    assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account")
-  })
-  it('should call a function that depends on a linked library', async () => {
-    const metaCoinInstance = await MetaCoin.new()
-    const metaCoinBalance = (await metaCoinInstance.getBalance.call(accounts[0])).toNumber()
-    const metaCoinEthBalance = (await metaCoinInstance.getBalanceInEth.call(accounts[0])).toNumber()
-
-    assert.equal(
-      metaCoinEthBalance,
-      2 * metaCoinBalance,
-      'Library function returned unexpected function, linkage may be broken'
-    )
+    expect(balance).to.be.bignumber.equal(ether('1'), "Amount wasn't correctly taken from the sender")
   })
   it('should send coin correctly', async () => {
     const metaCoinInstance = await MetaCoin.new()
@@ -26,26 +20,40 @@ contract('MetaCoin', (accounts) => {
     const accountTwo = accounts[1]
 
     // Get initial balances of first and second account.
-    const accountOneStartingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber()
-    const accountTwoStartingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber()
+    const accountOneStartingBalance = toBN(await metaCoinInstance.getBalance(accountOne))
+    const accountTwoStartingBalance = toBN(await metaCoinInstance.getBalance(accountTwo))
 
     // Make transaction from first account to second.
-    const amount = 10
-    await metaCoinInstance.sendCoin(accountTwo, amount, { from: accountOne })
+    const amount = ether('1')
+    const receipt = await metaCoinInstance.sendCoin(accountTwo, amount, { from: accountOne })
 
     // Get balances of first and second account after the transactions.
-    const accountOneEndingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber()
-    const accountTwoEndingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber()
+    const accountOneEndingBalance = toBN(await metaCoinInstance.getBalance(accountOne))
+    const accountTwoEndingBalance = toBN(await metaCoinInstance.getBalance(accountTwo))
 
-    assert.equal(
-      accountOneEndingBalance,
-      accountOneStartingBalance - amount,
+    expect(accountOneEndingBalance).to.be.bignumber.equal(
+      accountOneStartingBalance.sub(toBN(amount)),
       "Amount wasn't correctly taken from the sender"
     )
-    assert.equal(
-      accountTwoEndingBalance,
-      accountTwoStartingBalance + amount,
+    expect(accountTwoEndingBalance).to.be.bignumber.equal(
+      accountTwoStartingBalance.add(toBN(amount)),
       "Amount wasn't correctly sent to the receiver"
     )
+    expectEvent(receipt, 'Transfer', {
+      from: accountOne,
+      to: accountTwo,
+      value: amount,
+    })
+  })
+  it('should fail on insufficient balance', async () => {
+    const metaCoinInstance = await MetaCoin.new()
+
+    // Setup 2 accounts.
+    const accountOne = accounts[0]
+    const accountTwo = accounts[1]
+
+    // Make transaction from first account to second.
+    const amount = ether('2')
+    await expectRevert(metaCoinInstance.sendCoin(accountTwo, amount, { from: accountOne }), 'balance insufficient')
   })
 })
