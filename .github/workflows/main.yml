@@ -44,7 +44,5 @@ jobs:
       run: |
         cd templates/buidler
         yarn install
-        yarn lint:js --if-present
-        yarn lint:sol --if-present
         yarn compile
         yarn test
