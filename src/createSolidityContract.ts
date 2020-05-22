@@ -36,7 +36,7 @@ export async function createSolidityContract({ appPath, template }: { appPath: s
     console.log();
     await downloadAndExtractTemplate(root, template);
   } else {
-    const defaultTemplate = "truffle";
+    const defaultTemplate = "buidler";
     console.log("Downloading template files. This might take a moment.");
     console.log();
     await downloadAndExtractTemplate(root, defaultTemplate);

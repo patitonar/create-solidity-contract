@@ -12,16 +12,16 @@ let projectPath: string = "";
 
 const program: Commander.Command = new Commander.Command(packageJson.name)
   .version(packageJson.version)
-  .arguments("<project-directory>")
+  .arguments("[project-directory]")
   .usage(`${chalk.green("<project-directory>")} [options]`)
   .action(name => {
-    projectPath = name;
+    projectPath = name || '';
   })
   .option(
-    "-t, --template <name>|<github-url>",
+    "-t, --template <name>",
     `
   A custom template to bootstrap the project with. You can use a template
-  from the official Create Solidity Contract repo.
+  from the official repo.
 `,
   )
   .allowUnknownOption()
