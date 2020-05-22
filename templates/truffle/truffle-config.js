@@ -1,7 +1,7 @@
 module.exports = {
   compilers: {
     solc: {
-      version: '0.6.7',
+      version: '0.6.8',
     },
   },
   // Uncommenting the defaults below
