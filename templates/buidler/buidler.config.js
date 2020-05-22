@@ -1,3 +1,7 @@
-usePlugin("@nomiclabs/buidler-truffle5");
+usePlugin("@nomiclabs/buidler-waffle");
 
-module.exports = {};
+module.exports = {
+  solc: {
+    version: '0.6.8',
+  },
+};
