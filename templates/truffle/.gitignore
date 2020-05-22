@@ -4,8 +4,3 @@ coverage.json
 
 #Truffle files
 build
-
-#Buidler files
-cache
-artifacts
-
