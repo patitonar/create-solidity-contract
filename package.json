@@ -1,6 +1,6 @@
 {
   "name": "create-solidity-contract",
-  "description": "Start creating solidity smart contracts with the best tools by running one command",
+  "description": "Set up a solidity smart contract project with a complete set of tools ready to use by running one command",
   "version": "0.0.2",
   "author": {
     "name": "Gerardo Nardelli",
@@ -47,9 +47,15 @@
   "homepage": "https://github.com/patitonar/create-solidity-contract",
   "keywords": [
     "ethereum",
+    "create",
     "solidity",
-    "smart-contracts",
-    "developer-tools"
+    "project",
+    "smart",
+    "contracts",
+    "tools",
+    "setup",
+    "boilerplate",
+    "template"
   ],
   "license": "MIT",
   "main": "./dist/index.js",
