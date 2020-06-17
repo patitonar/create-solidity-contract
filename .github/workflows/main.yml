@@ -39,6 +39,7 @@ jobs:
         yarn lint:sol
         yarn compile
         yarn test
+        yarn coverage
 
   buidler:
     runs-on: ubuntu-latest
@@ -53,5 +54,8 @@ jobs:
       run: |
         cd templates/buidler
         yarn install
+        yarn lint:js
+        yarn lint:sol
         yarn compile
         yarn test
+        yarn coverage
