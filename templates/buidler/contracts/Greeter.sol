@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.6.8;
+pragma solidity >=0.4.25 <0.7.0;
 
 import "@nomiclabs/buidler/console.sol";
-
 
 contract Greeter {
     string public greeting;
