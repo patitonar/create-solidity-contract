@@ -1,4 +1,5 @@
 usePlugin('@nomiclabs/buidler-waffle')
+usePlugin("solidity-coverage")
 
 module.exports = {
   solc: {
