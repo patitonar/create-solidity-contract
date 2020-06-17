@@ -4,12 +4,9 @@
     "mocha": true,
     "truffle/globals": true
   },
-  "globals" : {
-    "usePlugin": false
-  },
   "plugins": ["mocha", "truffle", "prettier"],
   "rules": {
     "mocha/no-mocha-arrows": "off"
   },
-  "ignorePatterns": ["coverage/", "cache/"]
+  "ignorePatterns": ["coverage/"]
 }
