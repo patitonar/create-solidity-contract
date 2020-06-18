@@ -1,7 +1,7 @@
 {
   "name": "create-solidity-contract",
   "description": "Set up a solidity smart contract project with a complete set of tools ready to use by running one command",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Gerardo Nardelli",
     "url": "https://github.com/patitonar"
